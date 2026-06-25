@@ -58,6 +58,25 @@ My annotation rule will be to label the post based on its main function, not jus
 
 Another difficult boundary will be between `hot_take` and `meme_shitpost`, because League players often express opinions through exaggeration. For example, “Riot buffed Yone again because apparently the balance team lost to one in silver promos” contains a balance complaint, but the phrasing is mainly comedic. I will label this as `meme_shitpost` unless the surrounding post develops a sincere argument about balance.
 
+Here were some hard edge cases that I had difficulty deciding for:
+
+### Specific Difficult Labeling Examples
+
+While labeling the dataset, I found several examples that were difficult because they sat between two or more label definitions. These examples helped clarify that I should label posts based on their main function rather than their tone alone.
+
+| Example                                                                                                                                                                                                                                                                                | Possible Labels              | Final Label     | Decision                                                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| “Riot has no idea what to do with Zeri. She is either pick/ban in pro or completely useless in solo queue, and somehow every rework makes the problem worse.”                                                                                                                          | `analysis` / `hot_take`      | `hot_take`      | I labeled this as `hot_take` because it points toward a real balance issue but does not provide enough specific patch history, statistics, or gameplay reasoning to count as analysis. |
+| “That Baron throw was disgusting. They had no vision in river, burned Maokai ult early, and still walked in one at a time like solo queue players.”                                                                                                                                    | `reaction` / `analysis`      | `analysis`      | I labeled this as `analysis` because, even though the tone is emotional, the post gives specific in-game reasons for why the play failed.                                              |
+| “ADC is weak for exactly three minutes every season and then Riot gives them six items, three supports, and a handwritten apology.”                                                                                                                                                    | `hot_take` / `meme_shitpost` | `meme_shitpost` | I labeled this as `meme_shitpost` because the main purpose is exaggerated humor rather than a sincere balance argument.                                                                |
+| “No way they buffed Yone again. This champion already has three screens of mobility and wins lane by missing half his abilities.”                                                                                                                                                      | `reaction` / `hot_take`      | `hot_take`      | I labeled this as `hot_take` because it starts as a reaction to a patch change but mainly makes a broad unsupported claim about champion balance.                                      |
+| “Patch 26.13 Full Preview! Senna is the big winner of the Season 2 changes...”                                                                                                                                                                                                         | `analysis` / `skip`          | `skip`          | I labeled plain patch-note reposts or summaries as `skip` because they are not community takes unless the user adds their own argument, reaction, or joke.                             |
+| “I find it hilarious how they’ve broke Ziggs’ legs, shattered his jaw, amputated his left arm, and put a blindfold on him so he can’t possibly deal damage, but Brand’s still walking around pressing W+E on the wave and dealing 6k damage because you happened to be on the screen.” | `hot_take` / `meme_shitpost` | `meme_shitpost` | I labeled this as `meme_shitpost` because the complaint about balance is present, but the extreme cartoonish exaggeration makes humor the dominant function.                           |
+| “It’s pretty clear by now that the top quest doesn’t do anything for toplaners... Meanwhile, the ADC quest is doing too much for botlaners...”                                                                                                                                         | `analysis` / `hot_take`      | `hot_take`      | I labeled this as `hot_take` because it makes a confident balance claim with some reasoning, but the evidence is mostly broad and assertive rather than specific or verifiable.        |
+
+These cases reinforced my annotation rule: if a post contains specific reasoning that would still support the claim after removing emotional wording, I label it `analysis`; if it mainly asserts a broad opinion, I label it `hot_take`; if it is mostly an immediate response to a specific event, I label it `reaction`; if humor or parody is the main purpose, I label it `meme_shitpost`; and if the text is not a community take, I label it `skip`.
+
+
 ## 4. Data Collection Plan
 
 I will collect public posts and comments from **r/leagueoflegends**. I will sample from multiple types of threads so the dataset is not dominated by one style of discussion. Useful sources include post-match discussion threads, patch note threads, champion balance discussions, esports match threads, ranked complaint threads, and high-engagement general discussion posts.
@@ -72,6 +91,16 @@ My initial target is **200 total annotated examples**, with a goal of approximat
 During collection, I will avoid taking too many examples from a single thread because that could make the model learn thread-specific vocabulary instead of general discourse patterns. I will also remove or skip posts that are too short to classify meaningfully, such as single-word comments or comments that depend entirely on an image, video, or unavailable context.
 
 If one label is underrepresented after 200 examples, I will collect additional examples targeted toward that label. For example, if `analysis` is underrepresented, I will sample more from detailed patch discussion, esports analysis, champion mains discussions, or long-form gameplay threads. If `meme_shitpost` is underrepresented, I will sample from highly upvoted joke posts, offseason threads, or comments using obvious parody and community memes. If I still cannot collect at least 35 examples for a label, I will reconsider whether that label is common enough to include or whether it should be merged with another category.
+
+Here's how the final data collection ended up:
+| Label           | Count |
+| --------------- | ----: |
+| `analysis`      |   182 |
+| `hot_take`      |   109 |
+| `reaction`      |   101 |
+| `meme_shitpost` |    40 |
+| `skip`          |   111 |
+
 
 ## 5. Evaluation Metrics
 
