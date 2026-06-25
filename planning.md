@@ -134,3 +134,14 @@ To test whether my label definitions are clear enough, I generated boundary case
 | “NA is doomed. We lose one early skirmish and suddenly the whole team starts playing like the monitors turned off.”                                           | `reaction` / `meme_shitpost`  | `meme_shitpost` | The post responds to a likely esports moment, but the exaggerated phrasing makes it primarily a joke.                                                            |
 | “Yuumi getting buffed after months of complaints is actually hilarious. I’m convinced Riot is trying to test the limits of human patience.”                   | `reaction` / `meme_shitpost`  | `reaction`      | The post uses humor, but it is mainly an immediate emotional response to a specific patch change rather than a full joke or parody.                              |
 
+## 8. Annotation Assistance
+
+I plan to use an LLM to pre-label a small batch of examples before reviewing them myself. I will use ChatGPT to assign initial labels to approximately 25–40 examples using my four-label taxonomy: `analysis`, `hot_take`, `reaction`, and `meme_shitpost`. The LLM’s labels will not be treated as final annotations; they will be used only as a first-pass suggestion to speed up my own review and to identify examples where the taxonomy may be unclear.
+
+To track this process, my dataset will include separate columns for the raw text, the LLM-suggested label, my final label, and a notes field for disagreements or ambiguous cases. I will also include a boolean column such as `llm_pre_labeled` set to `true` for any example that received an AI-generated initial label. This will make it clear in my AI usage disclosure which examples were pre-labeled and which final annotations were human-reviewed.
+
+## 9. Failure Analysis
+
+After evaluating the model, I plan to give an AI tool a list of wrong predictions and ask it to identify possible patterns in the errors. For each wrong prediction, I will include the post text, the correct label, the model’s predicted label, and any confidence score if available. I will ask the AI tool to look for recurring confusion patterns, such as `hot_take` being mistaken for `analysis`, jokes being mistaken for sincere complaints, or emotional esports reactions being mislabeled as broad hot takes.
+
+I will not treat the AI tool’s failure analysis as automatically correct. Instead, I will verify the patterns myself by rereading the misclassified examples, checking them against my label definitions, and comparing the suggested patterns to the confusion matrix and per-label metrics. If the AI identifies a real pattern, I will use that finding to revise my evaluation writeup and possibly suggest changes to the label definitions, training data balance, or annotation rules.
