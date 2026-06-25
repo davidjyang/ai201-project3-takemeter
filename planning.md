@@ -113,7 +113,7 @@ The most important success condition is that the model must reliably separate `a
 
 A stronger version of the model would reach at least **80% accuracy**, **0.78 macro F1**, and **0.80 precision for `analysis`**. That level of performance would make it genuinely useful as a lightweight sorting or moderation aid, especially if predictions were shown as suggestions rather than used as automatic final judgments.
 
-### AI Tools Plan
+# AI Tools Plan
 
 ## 7. AI Label Stress-Testing
 
