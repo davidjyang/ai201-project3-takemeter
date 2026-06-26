@@ -269,7 +269,7 @@ These are example posts run through the fine-tuned model.
 | “It’s late game in soloq and most players are full build... windows asks me to SIGN INTO OUTLOOK AGAIN...”                                                            | `reaction`      | `analysis`            |                                  0.60 | No       |
 | “	My understanding is that there are champions who are typically balanced towards pro play because they involve a high degree of communications between teammates which makes them worse in soloQ. The biggest example that comes to mind is Kalista and Renata.” | `analysis`      | `analysis`            | .69 | Yes      |
 
-The correctly predicted `analysis` example is reasonable because the post defines what ability augments are and then explains a specific problem with them. Even though it has some opinionated wording, it is doing more than reacting emotionally: it gives context and makes a concrete claim about how the system works.
+The correctly predicted `analysis` example is reasonable because the post explains the rationale of why certain champions might be balanced for different audiences. It remains objective and gives a concrete example, making a claim about how the system works.
 
 ---
 
