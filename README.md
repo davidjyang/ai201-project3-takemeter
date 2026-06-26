@@ -319,15 +319,12 @@ I asked ChatGPT to help design a label taxonomy for r/leagueoflegends based on t
 
 ### 2. Annotation assistance
 
-I used an LLM to pre-label a small batch of examples before reviewing them myself. The AI-generated labels were treated as first-pass suggestions, not final labels. I manually reviewed the examples, changed labels where needed, and used my own decision rules for ambiguous cases. For disclosure and reproducibility, I tracked which examples were AI-assisted separately from my final human-reviewed label decisions.
+I used an LLM to pre-label a small batch of examples before reviewing them myself, as the instructions suggested. The AI-generated labels were treated as first-pass suggestions, not final labels. I manually reviewed the examples, changed labels where needed, and used my own decision rules for ambiguous cases. For disclosure and reproducibility, I tracked which examples were AI-assisted separately from my final human-reviewed label decisions.
 
 ### 3. Failure analysis assistance
 
-After evaluation, I asked ChatGPT to look at wrong predictions and identify common error patterns. It pointed out that the baseline overpredicted `analysis`, struggled with sarcasm and exaggeration, and often confused `hot_take` with `analysis`. I verified these patterns myself by checking the confusion matrices and rereading specific misclassified examples before including them in this README.
+After evaluation, I asked ChatGPT to look at wrong predictions and identify common error patterns, as the instructions for the project required. It pointed out that the baseline overpredicted `analysis`, struggled with sarcasm and exaggeration, and often confused `hot_take` with `analysis`. I verified these patterns myself by checking the confusion matrices and rereading specific misclassified examples before including them in this README.
 
-### 4. Debugging and implementation assistance
-
-I also used ChatGPT to help debug the notebook when the first fine-tuned model collapsed into predicting mostly `analysis`. It suggested checking label distributions, raw predictions, warmup steps, macro F1, and prediction counts. I used that guidance to inspect the training setup and improve the evaluation checks, but I made the final implementation decisions myself.
 
 ---
 
